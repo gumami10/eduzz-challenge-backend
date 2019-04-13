@@ -11,6 +11,17 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+// $router->get('/', function () use ($router) {
+//     return $router->app->version();
+// });
+
+
+$router->get('posts/{id}', 'BlogController@show');
+
+$router->get('posts', 'BlogController@index');
+
+$router->post('posts', 'BlogController@create');
+
+$router->delete('posts/{id}', 'BlogController@delete');
+
+$router->put('posts', 'BlogController@update');
