@@ -19,6 +19,10 @@ class BlogController extends Controller
     public function create (Request $request) {
         $post = new Post;
 
+        $this->validate($request, [
+            'author' => 'required|max:20',
+        ]);
+
         $post->author = $request->author;
         $post->category = $request->category;
         $post->title = $request->title;
@@ -37,6 +41,10 @@ class BlogController extends Controller
 
     public function update(Request $request) {
         $post = Post::find($request->id);
+
+        $this->validate($request, [
+            'id' => 'required',
+        ]);
 
         $post->author = $request->author;
         $post->title = $request->title;

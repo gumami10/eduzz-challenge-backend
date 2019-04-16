@@ -17,11 +17,13 @@
 
 
 $router->get('posts/{id}', 'BlogController@show');
-
 $router->get('posts', 'BlogController@index');
-
 $router->post('posts', 'BlogController@create');
-
 $router->delete('posts/{id}', 'BlogController@delete');
-
 $router->put('posts', 'BlogController@update');
+
+$router->get('authors/{id}', 'AuthorController@show');
+$router->get('authors', 'AuthorController@index');
+$router->post('authors', 'AuthorController@create');
+$router->delete('authors/{id}', 'AuthorController@delete');
+$router->put('authors', 'AuthorController@update');
