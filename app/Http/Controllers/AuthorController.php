@@ -9,18 +9,18 @@ class AuthorController extends Controller
 {
 
     public function index() {
-        return Author::all();
+        return Author::with(['categories'])->get();
     }
 
     public function show($id) {
-        return Author::find($id);
+        return Author::find($id)->category;
     }
 
     public function create (Request $request) {
         $author = new Author;
 
         $author->name = $request->name;
-        $author->fav_category = $request->fav_category;
+        $author->fav_category_id = $request->fav_category_id;
 
         $author->save();
         return response(array("SUCCESS" => true), 200);
@@ -41,7 +41,7 @@ class AuthorController extends Controller
         }
 
         if($request->fav_category) {
-            $author->fav_category = $request->fav_category;
+            $author->fav_category_id = $request->fav_category_id;
         }
 
         $author->save();

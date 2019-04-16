@@ -9,7 +9,7 @@ class BlogController extends Controller
 {
 
     public function index() {
-        return Post::all();
+        return Post::with(['author', 'categories'])->get();
     }
 
     public function show($id) {
@@ -30,13 +30,13 @@ class BlogController extends Controller
 
         $post->save();
 
-        return array("Status - 200" => true);
+        return response(array("SUCCESS" => true), 200);
     }
 
     public function delete($id) {
         Post::destroy($id);
 
-        return array("Status - 410" => true);
+        return response(array("SUCCESS" => true), 200);
     }
 
     public function update(Request $request) {
@@ -46,13 +46,24 @@ class BlogController extends Controller
             'id' => 'required',
         ]);
 
-        $post->author = $request->author;
-        $post->title = $request->title;
-        $post->category = $request->category;
-        $post->content = $request->content;
+        if($request->author_id) {
+            $post->author_id = $request->author_id;
+        }
+
+        if($request->title) {
+            $post->title = $request->title;
+        }
+
+        if($request->category) {
+            $post->category = $request->category;
+        }
+
+        if($request->content) {
+            $post->content = $request->content;
+        }
 
         $post->save();
 
-        return array("Status - 100" => true);
+        return response(array("SUCCESS" => true), 200);
     }
 }

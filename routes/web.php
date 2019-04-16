@@ -27,3 +27,9 @@ $router->get('authors', 'AuthorController@index');
 $router->post('authors', 'AuthorController@create');
 $router->delete('authors/{id}', 'AuthorController@delete');
 $router->put('authors', 'AuthorController@update');
+
+$router->get('categories/{id}', 'CategoryController@show');
+$router->get('categories', 'CategoryController@index');
+$router->post('categories', 'CategoryController@create');
+$router->delete('categories/{id}', 'CategoryController@delete');
+$router->put('categories', 'CategoryController@update');
